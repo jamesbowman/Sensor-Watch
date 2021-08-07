@@ -1,0 +1,6 @@
+set -e
+
+python extract.py
+qiv out.png
+
+
