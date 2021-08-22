@@ -1,0 +1,13 @@
+set -e
+
+make
+
+if [ -x "$(command -v xdotool)" ]; then
+  CUR_WID=$(xdotool getwindowfocus)
+  for WID in $(xdotool search --onlyvisible --name 'Sensor Watch F-91W Emulator - Google Chrome')
+  do
+    xdotool windowactivate $WID
+    xdotool key 'shift+ctrl+r'
+  done
+  xdotool windowactivate $CUR_WID
+fi
