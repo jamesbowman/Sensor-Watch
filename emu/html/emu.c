@@ -17,7 +17,8 @@ void loop() {
 
 void incoming_event(int e) {
   watch_dispatch_callback(e);
-  loop();
+  if (e <= BTN_ALARM)
+    loop();
 }
 
 int main() {

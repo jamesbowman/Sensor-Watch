@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <time.h>
 #include "watch.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -128,7 +127,6 @@ bool app_loop() {
             break;
     }
 
-#if 0
     // Display the number of times we've woken up (modulo 32 to fit in 2 digits at top right)
     char buf[3] = {0};
     sprintf(buf, "%2d", application_state.wake_count % 32);
@@ -143,25 +141,6 @@ bool app_loop() {
             watch_display_string("there", 5);
             break;
     }
-#endif
-    char buf[11];
-      struct tm tm;
-    struct calendar_date_time date_time;
-    watch_get_date_time(&date_time);
-
-    memset((void *) &tm, 0, sizeof(tm));
-    tm.tm_year = date_time.date.year - 1900;
-    tm.tm_mon = date_time.date.month - 1;
-    tm.tm_mday = date_time.date.day;
-    mktime(&tm);
-
-    const char* days[] = {"SU","MO","TU","WE","TH", "FR", "SA"};
-    sprintf(buf, "%s%2d%02d%02d%02d",
-      days[tm.tm_wday],
-      date_time.date.day,
-      date_time.time.hour, date_time.time.min, date_time.time.sec);
-    watch_display_string(buf, 0);
-    watch_set_colon();
 
     // Wait a moment to debounce button input
     delay_ms(250);

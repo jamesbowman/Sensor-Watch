@@ -298,9 +298,9 @@ void watch_set_led_color(uint16_t red, uint16_t green) {
 }
 
 static void set_leds(int r, int g) {
-  char scr[80];
-  sprintf(scr, "set_leds(%d, %d)", r, g);
-  emscripten_run_script(scr);
+  EM_ASM({
+    set_leds($0, $1);
+  }, r, g);
 }
 
 void watch_set_led_red() {

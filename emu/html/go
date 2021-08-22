@@ -11,3 +11,4 @@ if [ -x "$(command -v xdotool)" ]; then
   done
   xdotool windowactivate $CUR_WID
 fi
+./publish
